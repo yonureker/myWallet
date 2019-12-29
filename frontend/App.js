@@ -1,27 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from "react-native";
+
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+import LoginScreen from './screens/loginScreen'
+import SignupScreen from './screens/signupScreen'
+import ProfileScreen from './screens/profileScreen'
+import PasswordScreen from './screens/passwordScreen'
 
 export default function App() {
-  const [message, setMessage] = useState("")
-  
-  useEffect(() => {
-    fetch("http://localhost:5000/api/users/test")
-    .then(response => response.json())
-    .then(responseJson => setMessage(responseJson.msg))
-  })
-
   return (
-    <View style={styles.container}>
-      <Text>{message}</Text>
-    </View>
+      <AppContainer />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator(
+  {
+    Login: LoginScreen,
+    // Signup: SignupScreen,
+    // Profile: ProfileScreen,
+    // Password: PasswordScreen
   },
-});
+  {
+    initialRouteName: 'Login'
+  }
+);
+
+const AppContainer = createAppContainer(AppNavigator);
