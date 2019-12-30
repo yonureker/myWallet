@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const secret = process.env.SECRET;
 
 // User Model
 const User = require("../../models/User");
@@ -31,10 +32,18 @@ router.post("/register", (req, res) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         newUser.password = hash;
-        console.log(newUser.password);
         newUser
           .save()
-          .then(user => res.json(user))
+          .then(user => {
+            const payload = { id: user.id };
+
+            jwt.sign(payload, secret, { expiresIn: 3600 }, (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token
+              });
+            });
+          })
           .catch(err => console.log(err));
       });
     });
@@ -52,7 +61,16 @@ router.post("/login", (req, res) => {
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        res.json({ msg: "Success" });
+        // Create JWT Payload
+        const payload = { id: user.id };
+
+        // JWT Sign
+        jwt.sign(payload, secret, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: "Bearer " + token
+          });
+        });
       } else {
         return res.status(400).json({ password: "Incorrect password" });
       }
