@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-nativ
 
 import AuthCss from '../css/authCss'
 
-const LoginScreen = props => {
+const SignupScreen = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,7 +31,7 @@ const LoginScreen = props => {
               loginUser(email, password);
             }}
           >
-            <Text style={{ fontSize: 20, color: "#ffffff" }}>Log In</Text>
+            <Text style={{ fontSize: 20, color: "#ffffff" }}>Signup</Text>
           </TouchableOpacity>
         </View>
           <View style={styles.signupContainer}>
@@ -50,10 +50,10 @@ const LoginScreen = props => {
   );
 }
 
-LoginScreen.navigationOptions = {
-  title: "Log In"
+SignupScreen.navigationOptions = {
+  title: "Sign Up"
 };
 
 const styles = StyleSheet.create(AuthCss);
 
-export default LoginScreen;
+export default SignupScreen;
