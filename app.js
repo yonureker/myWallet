@@ -1,12 +1,18 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-require("dotenv").config();
 const db = process.env.ATLAS_URI;
+const port = process.env.PORT || 5000;
+
+const users = require("./routes/api/users");
+const items = require("./routes/api/items");
 
 app.get("/", (req, res) => res.send("hello"));
-
-const port = process.env.PORT || 5000;
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use("/api/users", users);
+app.use("/api/items", items);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
