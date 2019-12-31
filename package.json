@@ -19,7 +19,8 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3"
+    "react-navigation-stack": "^1.10.3",
+    "validator": "^12.1.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
