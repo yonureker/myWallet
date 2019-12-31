@@ -17,6 +17,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.3",
     "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
     "react-navigation": "^4.0.10",
     "react-navigation-stack": "^1.10.3"
   },
