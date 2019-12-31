@@ -6,6 +6,7 @@ import AuthCss from '../css/authCss'
 const SignupScreen = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
 
   return (
     <View style={styles.container}>
@@ -24,6 +25,13 @@ const SignupScreen = props => {
             placeholder="Password"
             placeholderTextColor="#D7DBDD"
             onChangeText={password => setPassword(password)}
+          />
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            placeholder="Confirm Password"
+            placeholderTextColor="#D7DBDD"
+            onChangeText={password2 => setPassword2(password2)}
           />
           <TouchableOpacity
             style={styles.button}

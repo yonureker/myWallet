@@ -3,19 +3,23 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secret = process.env.secretOrKeys;
-const passport = require('passport');
+const passport = require("passport");
 
 // User Model
 const User = require("../../models/User");
 
+// Validations
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
 // User Sign In
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
   const { email, password } = req.body;
 
-  // Simple validation
-  // Return error if email or password field is empty
-  if (!email || !password) {
-    return res.status(400).json({ msg: "Email or password can not be empty." });
+  // Validation logic
+  if (!isValid) {
+    return res.status(400).json(errors);
   }
 
   // Check if user with the same email exists
@@ -55,7 +59,13 @@ router.post("/register", (req, res) => {
 
 // User Log In
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
   const { email, password } = req.body;
+
+  // Validation logic
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   User.findOne({ email }).then(user => {
     if (!user) {
@@ -81,11 +91,10 @@ router.post("/login", (req, res) => {
   });
 });
 
-
 // Returning current user
 router.get(
-  '/current',
-  passport.authenticate('jwt', { session: false }),
+  "/current",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
       id: req.user.id,

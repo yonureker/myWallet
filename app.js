@@ -25,7 +25,6 @@ app.use(passport.initialize());
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
 
-console.log(db)
 // Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
