@@ -12,7 +12,7 @@ router.post("/register", (req, res) => {
   const { email, password } = req.body;
 
   // Simple validation
-  // Return error if field is empty
+  // Return error if email or password field is empty
   if (!email || !password) {
     return res.status(400).json({ msg: "Email or password can not be empty." });
   }
@@ -21,22 +21,24 @@ router.post("/register", (req, res) => {
   User.findOne({ email }).then(user => {
     if (user) return res.status(400).json({ msg: "User already exists" });
 
+    // create a new instance of a User
     const newUser = new User({
       email,
       password
     });
 
-    console.log(newUser);
-
+    // creating a hashed version of the password
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         newUser.password = hash;
+        //save new user and hashed password
         newUser
           .save()
           .then(user => {
             const payload = { id: user.id };
 
+            // sign in user
             jwt.sign(payload, secret, { expiresIn: 3600 }, (err, token) => {
               res.json({
                 success: true,
