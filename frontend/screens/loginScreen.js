@@ -1,11 +1,40 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput
+} from "react-native";
 
-import AuthCss from '../css/authCss'
+import AuthCss from "../css/authCss";
 
 const LoginScreen = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userId, setUserId] = useState("")
+
+  const loginUser = async (email, password) => {
+    await fetch("http://localhost:5000/api/users/login/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      setUserId(responseJson.id)
+    })
+    .then(props.navigation.navigate('Items', {userId: userId} ))
+    .catch((error) => {
+      console.error(error);
+    });;
+  };
 
   return (
     <View style={styles.container}>
@@ -34,7 +63,7 @@ const LoginScreen = props => {
             <Text style={{ fontSize: 20, color: "#ffffff" }}>Log In</Text>
           </TouchableOpacity>
         </View>
-          <View style={styles.signupContainer}>
+        <View style={styles.signupContainer}>
           <Text>
             Don't have an account?{" "}
             <Text
@@ -44,11 +73,11 @@ const LoginScreen = props => {
               Sign Up.
             </Text>
           </Text>
-          </View>
         </View>
       </View>
+    </View>
   );
-}
+};
 
 LoginScreen.navigationOptions = {
   title: "Log In"
