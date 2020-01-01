@@ -8,6 +8,28 @@ const SignupScreen = props => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
+  const signupUser = (email, password, password2) => {
+    fetch("http://localhost:5000/api/users/register/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        password2: password2
+      })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+    })
+    .catch((error) => {
+      console.error(error);
+    });;
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.loginModule}>
@@ -36,7 +58,7 @@ const SignupScreen = props => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              loginUser(email, password);
+              signupUser(email, password, password2);
             }}
           >
             <Text style={{ fontSize: 20, color: "#ffffff" }}>Signup</Text>
