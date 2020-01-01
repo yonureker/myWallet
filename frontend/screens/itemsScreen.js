@@ -2,9 +2,13 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 const ItemsScreen = props => {
+  // logged in User
+  const userId = props.navigation.state.params.userId
+
   return (
+   
     <View style={styles.container}>
-      <Text>This is the items screen</Text>
+      <Text>Your user ID is {userId}</Text>
     </View>
   );
 };
