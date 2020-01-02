@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const jwt = require("jsonwebtoken");
 
 const Item = require('../../models/Item');
 const validateItemInput = require('../../validation/items');
@@ -13,7 +14,7 @@ router.get('/user/:user_id', (req, res) => {
   .catch(err => res.status(404).json({ noitemsfound: 'No Items found'}))
 })
 
-router.post('/', 
+router.post('/new', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
     const {errors, isValid} = validateItemInput(req.body);
@@ -34,5 +35,4 @@ router.post('/',
 );
 
 module.exports = router;
-
 

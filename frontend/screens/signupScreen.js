@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from "react-native";
 
 import AuthCss from '../css/authCss'
 
@@ -8,8 +8,8 @@ const SignupScreen = props => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
 
-  const signupUser = (email, password, password2) => {
-    fetch("http://localhost:5000/api/users/register/", {
+  const signupUser = async (email, password, password2) => {
+    const response = await fetch("http://localhost:5000/api/users/register/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -21,13 +21,16 @@ const SignupScreen = props => {
         password2: password2
       })
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-    })
-    .catch((error) => {
-      console.error(error);
-    });;
+
+    const data = await response.json()
+
+    if (data.id) {
+      props.navigation.navigate('Items', {userId: data.id} );
+    } else {
+      const errors = Object.values(data);
+
+      errors.map(error => Alert.alert(error))
+    }
   };
 
   return (

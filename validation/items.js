@@ -4,7 +4,7 @@ const validText = require('./valid-text');
 module.exports = function validateTweetInput(data) {
   let errors = {};
 
-  data.name = validText(data.text) ? data.text : '';
+  data.name = validText(data.name) ? data.name : '';
   data.amount = validText(data.amount) ? data.amount : '';
 
   if (Validator.isEmpty(data.name)) {
