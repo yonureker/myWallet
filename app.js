@@ -14,6 +14,9 @@ const port = process.env.PORT || 5000;
 const users = require("./routes/api/users");
 const items = require("./routes/api/items");
 
+// Passport Config
+require('./config/passport')(passport);
+
 const app = express();
 
 // Middlewares
