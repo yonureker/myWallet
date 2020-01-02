@@ -4,7 +4,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 
 import AuthCss from "../css/authCss";
@@ -12,10 +13,9 @@ import AuthCss from "../css/authCss";
 const LoginScreen = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userId, setUserId] = useState("")
 
   const loginUser = async (email, password) => {
-    await fetch("http://localhost:5000/api/users/login/", {
+    const response = await fetch("http://localhost:5000/api/users/login/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -26,14 +26,16 @@ const LoginScreen = props => {
         password: password
       })
     })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      setUserId(responseJson.id)
-    })
-    .then(props.navigation.navigate('Items', {userId: userId} ))
-    .catch((error) => {
-      console.error(error);
-    });;
+    
+    const data = await response.json()
+
+    if (data.id) {
+      props.navigation.navigate('Items', {userId: data.id} );
+    } else {
+      const errors = Object.values(data);
+
+      errors.map(error => Alert.alert(error))
+    }
   };
 
   return (
