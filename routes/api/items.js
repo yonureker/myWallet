@@ -8,7 +8,7 @@ const Item = require('../../models/Item');
 const validateItemInput = require('../../validation/items');
 
 // Gets a list of items for a specific user
-router.get('/user/:user_id', (req, res) => {
+router.get('/users/:user_id', (req, res) => {
   Item.find({user: req.params.user_id})
   .then(items => res.json(items))
   .catch(err => res.status(404).json({ noitemsfound: 'No Items found'}))
