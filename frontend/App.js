@@ -6,6 +6,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import LoginScreen from "./screens/loginScreen";
 import SignupScreen from "./screens/signupScreen";
 import ItemsScreen from "./screens/itemsScreen";
+import AddItemsScreen from "./screens/addItemsScreen";
 
 export default function App() {
 
@@ -18,7 +19,8 @@ const AppNavigator = createStackNavigator(
   {
     Login: LoginScreen,
     Signup: SignupScreen,
-    Items: ItemsScreen
+    Items: ItemsScreen,
+    AddItems: AddItemsScreen
   },
   {
     initialRouteName: "Login"
