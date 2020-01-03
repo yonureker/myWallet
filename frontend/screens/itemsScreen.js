@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, FlatList } from "react-native";
-import ItemCard from '../components/itemCard';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  FlatList
+} from "react-native";
+import ItemCard from "../components/itemCard";
 
 const ItemsScreen = props => {
   const [items, setItems] = useState([]);
+
   // logged in User
-  const userId = props.navigation.state.params.userId
+  const { userId, token } = props.navigation.state.params;
 
-  const receiveItems = async (userId) => {
-    const response = await fetch(`http://localhost:5000/api/items/users/${userId}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
+  const receiveItems = async userId => {
+    const response = await fetch(
+      `http://localhost:5000/api/items/users/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
       }
-    });
-
-    const data = await response.json()
-    setItems(data);
-  }
-
-  const addNewItem = () => {
-    return(
-      <TouchableOpacity>
-        <Text>Add New Item</Text>
-      </TouchableOpacity>
     )
-  }
+
+    const data = await response.json();
+    setItems(data);
+  };
 
   useEffect(() => {
     receiveItems(userId);
   });
 
   return (
-   
     <View style={styles.container}>
-       <FlatList
+      <FlatList
         data={items}
         renderItem={({ item }) => (
           <ItemCard
@@ -46,7 +47,9 @@ const ItemsScreen = props => {
           />
         )}
         keyExtractor={item => item._id}
-        ListFooterComponent={addNewItem}
+        ListFooterComponent={<TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('AddItems', {userId: userId, token: token})}>
+        <Text style={{ color: "#ffffff" }}>Add New Item</Text>
+      </TouchableOpacity>}
       />
     </View>
   );
@@ -56,7 +59,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    marginTop: 10,
+    backgroundColor: "gray",
+    minHeight: 50,
     alignItems: "center",
+    justifyContent: "center"
   }
 });
 
