@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  Alert
+  Alert,
+  AsyncStorage
 } from "react-native";
 
 import AuthCss from "../css/authCss";
@@ -15,7 +16,7 @@ const LoginScreen = props => {
   const [password, setPassword] = useState("");
 
   const loginUser = async (email, password) => {
-    const response = await fetch("http://localhost:5000/api/users/login/", {
+    try {const response = await fetch("http://localhost:5000/api/users/login/", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -30,12 +31,16 @@ const LoginScreen = props => {
     const data = await response.json()
 
     if (data.id) {
-      props.navigation.navigate('Items', {userId: data.id} );
+      // no need for AsyncStorage now
+      props.navigation.navigate('Items', {userId: data.id, token: data.token} );
     } else {
       const errors = Object.values(data);
 
       errors.map(error => Alert.alert(error))
     }
+  } catch {
+    console.log(error)
+  }
   };
 
   return (
