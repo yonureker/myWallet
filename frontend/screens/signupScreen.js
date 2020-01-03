@@ -69,10 +69,10 @@ const SignupScreen = props => {
         </View>
           <View style={styles.signupContainer}>
           <Text>
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Text
               style={styles.textLink}
-              onPress={() => props.navigation.navigate("Signup")}
+              onPress={() => props.navigation.navigate("Login")}
             >
               Sign Up.
             </Text>
