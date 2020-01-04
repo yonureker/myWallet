@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   Text,
   TouchableOpacity,
   TextInput,
-  KeyboardAvoidingView,
-  AsyncStorage,
   Alert
 } from "react-native";
 
@@ -37,9 +35,11 @@ const AddItemsScreen = props => {
     })
 
     const data = await response.json();
+    console.log(data)
 
-    if (data.id) {
-      props.navigation.navigate('Items');
+    if (data._id) {
+      console.log('leaving add item screen')
+      props.navigation.navigate('Items', {userId: userId});
     } else {
       const errors = Object.values(data);
 
