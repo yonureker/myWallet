@@ -33,9 +33,10 @@ const ItemsScreen = props => {
   const monthlyCost = () => {
     const costArray = items.map(item => item.amount);
 
-    const reducer = (accumulator, currentValue) => (accumulator + currentValue);
-    return costArray.reduce(reducer, 0);
-  }
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+    const cost = costArray.reduce(reducer, 0);
+    return parseFloat(parseFloat(cost).toFixed(2))
+  };
 
   useEffect(() => {
     receiveItems(userId);
@@ -43,36 +44,38 @@ const ItemsScreen = props => {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 10}}>
-      <FlatList
-        data={items}
-        renderItem={({ item }) => (
-          <ItemCard
-            id={item._id}
-            title={item.name}
-            amount={item.amount}
-            description={item.description}
-          />
-        )}
-        keyExtractor={item => item._id}
-        showsHorizontalScrollIndicator={false}
-        ListFooterComponent={
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() =>
-              props.navigation.navigate("AddItems", {
-                userId: userId,
-                token: token
-              })
-            }
-          >
-            <Text style={{ color: "#ffffff" }}>Add New Item</Text>
-          </TouchableOpacity>
-        }
-      />
+      <View style={{ flex: 10 }}>
+        <FlatList
+          data={items}
+          renderItem={({ item }) => (
+            <ItemCard
+              id={item._id}
+              title={item.name}
+              amount={item.amount}
+              description={item.description}
+            />
+          )}
+          keyExtractor={item => item._id}
+          showsHorizontalScrollIndicator={false}
+          ListFooterComponent={
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() =>
+                props.navigation.navigate("AddItems", {
+                  userId: userId,
+                  token: token
+                })
+              }
+            >
+              <Text style={{ color: "#ffffff" }}>Add New Item</Text>
+            </TouchableOpacity>
+          }
+        />
       </View>
       <View style={styles.monthlyCost}>
-        <Text style={{color: '#ffffff', fontSize: 20}}>Monthly Cost: ${monthlyCost()}</Text>
+        <Text style={{ color: "#ffffff", fontSize: 20 }}>
+          Monthly Cost: ${monthlyCost()}
+        </Text>
       </View>
     </View>
   );
@@ -91,14 +94,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  monthlyCost:{
+  monthlyCost: {
     flex: 1,
     backgroundColor: "#b83737",
-    borderTopColor: '#e0cece',
+    borderTopColor: "#e0cece",
     borderTopWidth: 2,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 
