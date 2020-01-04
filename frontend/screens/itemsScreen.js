@@ -30,12 +30,20 @@ const ItemsScreen = props => {
     setItems(data);
   };
 
+  const monthlyCost = () => {
+    const costArray = items.map(item => item.amount);
+
+    const reducer = (accumulator, currentValue) => (accumulator + currentValue);
+    return costArray.reduce(reducer, 0);
+  }
+
   useEffect(() => {
     receiveItems(userId);
   }, [items]);
 
   return (
     <View style={styles.container}>
+      <View style={{flex: 10}}>
       <FlatList
         data={items}
         renderItem={({ item }) => (
@@ -48,8 +56,6 @@ const ItemsScreen = props => {
         )}
         keyExtractor={item => item._id}
         showsHorizontalScrollIndicator={false}
-        onRefresh={() => receiveItems(userId)}
-        refreshing={true}
         ListFooterComponent={
           <TouchableOpacity
             style={styles.button}
@@ -64,6 +70,10 @@ const ItemsScreen = props => {
           </TouchableOpacity>
         }
       />
+      </View>
+      <View style={styles.monthlyCost}>
+        <Text style={{color: '#ffffff', fontSize: 20}}>Monthly Cost: ${monthlyCost()}</Text>
+      </View>
     </View>
   );
 };
@@ -76,10 +86,19 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 10,
-    backgroundColor: "gray",
+    backgroundColor: "#0e75b5",
     minHeight: 50,
     alignItems: "center",
     justifyContent: "center"
+  },
+  monthlyCost:{
+    flex: 1,
+    backgroundColor: "#b83737",
+    borderTopColor: '#e0cece',
+    borderTopWidth: 2,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

@@ -39,7 +39,7 @@ const AddItemsScreen = props => {
 
     if (data._id) {
       console.log('leaving add item screen')
-      props.navigation.navigate('Items', {userId: userId});
+      props.navigation.navigate('Items', {userId: userId, name: name});
     } else {
       const errors = Object.values(data);
 
