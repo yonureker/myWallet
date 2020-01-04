@@ -74,7 +74,7 @@ const SignupScreen = props => {
               style={styles.textLink}
               onPress={() => props.navigation.navigate("Login")}
             >
-              Sign Up.
+              Log In.
             </Text>
           </Text>
           </View>
