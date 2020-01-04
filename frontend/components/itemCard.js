@@ -8,7 +8,7 @@ const ItemCard = props => {
   return(
   <View style={styles.container}>
     <View style={styles.cardLeft}>
-     <Text>{title}</Text> 
+     <Text style={{fontSize: 15}}>{title}</Text> 
     </View>
     <View style={styles.cardRight}>
       <Text style={{fontSize: 20, alignSelf:'flex-end'}}>${amount}</Text>
