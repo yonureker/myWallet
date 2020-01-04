@@ -35,7 +35,7 @@ const ItemsScreen = props => {
 
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const cost = costArray.reduce(reducer, 0);
-    return parseFloat(parseFloat(cost).toFixed(2))
+    return cost;
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const ItemsScreen = props => {
                 })
               }
             >
-              <Text style={{ color: "#ffffff" }}>Add New Item</Text>
+              <Text style={{ color: "#ffffff" }}>{items.length > 0 ? 'Add New Item' : 'Add First Item'}</Text>
             </TouchableOpacity>
           }
         />
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: "#0e75b5",
     minHeight: 50,
+    minWidth: '80%',
     alignItems: "center",
     justifyContent: "center"
   },
