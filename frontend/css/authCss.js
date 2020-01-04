@@ -33,7 +33,8 @@ export default authCss = {
     backgroundColor: "green",
     minHeight: 50,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    width: '100%'
   },
   signupContainer: {
     justifyContent: "center",
