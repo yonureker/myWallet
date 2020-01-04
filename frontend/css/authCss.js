@@ -4,7 +4,7 @@ export default authCss = {
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    width: "100%"
+    width: "100%",
   },
   textLink: {
     color: "#49AEB5"
@@ -34,7 +34,8 @@ export default authCss = {
     minHeight: 50,
     alignItems: "center",
     justifyContent: "center",
-    width: '100%'
+    width: '100%',
+    minWidth: 200
   },
   signupContainer: {
     justifyContent: "center",
