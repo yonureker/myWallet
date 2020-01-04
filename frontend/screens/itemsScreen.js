@@ -24,7 +24,7 @@ const ItemsScreen = props => {
           "Content-Type": "application/json"
         }
       }
-    )
+    );
 
     const data = await response.json();
     setItems(data);
@@ -32,7 +32,7 @@ const ItemsScreen = props => {
 
   useEffect(() => {
     receiveItems(userId);
-  });
+  }, [items]);
 
   return (
     <View style={styles.container}>
@@ -47,9 +47,22 @@ const ItemsScreen = props => {
           />
         )}
         keyExtractor={item => item._id}
-        ListFooterComponent={<TouchableOpacity style={styles.button} onPress={() => props.navigation.navigate('AddItems', {userId: userId, token: token})}>
-        <Text style={{ color: "#ffffff" }}>Add New Item</Text>
-      </TouchableOpacity>}
+        showsHorizontalScrollIndicator={false}
+        onRefresh={() => receiveItems(userId)}
+        refreshing={true}
+        ListFooterComponent={
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() =>
+              props.navigation.navigate("AddItems", {
+                userId: userId,
+                token: token
+              })
+            }
+          >
+            <Text style={{ color: "#ffffff" }}>Add New Item</Text>
+          </TouchableOpacity>
+        }
       />
     </View>
   );
