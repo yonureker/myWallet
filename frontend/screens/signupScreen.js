@@ -20,7 +20,7 @@ const SignupScreen = props => {
         password: password,
         password2: password2
       })
-    })
+    });
 
     const data = await response.json()
 
