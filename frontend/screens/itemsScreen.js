@@ -7,6 +7,7 @@ import {
   FlatList
 } from "react-native";
 import ItemCard from "../components/itemCard";
+import AddItemsScreen from "./addItemsScreen";
 
 const ItemsScreen = props => {
   const [items, setItems] = useState([]);
@@ -40,7 +41,7 @@ const ItemsScreen = props => {
 
   useEffect(() => {
     receiveItems(userId);
-  }, [items]);
+  }, [items.length]);
 
   return (
     <View style={styles.container}>
@@ -53,6 +54,14 @@ const ItemsScreen = props => {
               title={item.name}
               amount={item.amount}
               description={item.description}
+              onPress={() =>
+                props.navigation.navigate("EditItems", {
+                  id: item._id,
+                  title: item.name,
+                  amount: item.amount,
+                  description: item.description
+                })
+              }
             />
           )}
           keyExtractor={item => item._id}
@@ -67,7 +76,9 @@ const ItemsScreen = props => {
                 })
               }
             >
-              <Text style={{ color: "#ffffff" }}>{items.length > 0 ? 'Add New Item' : 'Add First Item'}</Text>
+              <Text style={{ color: "#ffffff" }}>
+                {items.length > 0 ? "Add New Item" : "Add First Item"}
+              </Text>
             </TouchableOpacity>
           }
         />
@@ -91,7 +102,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     backgroundColor: "#0e75b5",
     minHeight: 50,
-    minWidth: '80%',
+    minWidth: "80%",
     alignItems: "center",
     justifyContent: "center"
   },
