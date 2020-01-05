@@ -1,11 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const ItemCard = props => {
 
   const {id, title, amount, description} = props
 
   return(
+    <TouchableHighlight onPress={() => props.onPress()}>
   <View style={styles.container}>
     <View style={styles.cardLeft}>
      <Text style={{fontSize: 15}}>{title}</Text> 
@@ -14,6 +16,7 @@ const ItemCard = props => {
       <Text style={{fontSize: 20, alignSelf:'flex-end'}}>${amount}</Text>
     </View>
   </View>
+  </TouchableHighlight>
   )
 }
 
