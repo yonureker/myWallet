@@ -12,8 +12,8 @@ import {
 import AuthCss from "../css/authCss";
 
 const LoginScreen = props => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("a@a.com");
+  const [password, setPassword] = useState("123456");
 
   const loginUser = async (email, password) => {
     try {const response = await fetch("http://localhost:5000/api/users/login/", {
@@ -53,6 +53,7 @@ const LoginScreen = props => {
             placeholder="Email"
             placeholderTextColor="#D7DBDD"
             onChangeText={email => setEmail(email)}
+            defaultValue="yonureker@gmail.com"
           />
           <TextInput
             style={styles.textInput}
@@ -60,6 +61,7 @@ const LoginScreen = props => {
             placeholder="Password"
             placeholderTextColor="#D7DBDD"
             onChangeText={password => setPassword(password)}
+            defaultValue="'12345678'"
           />
           <TouchableOpacity
             style={styles.button}
