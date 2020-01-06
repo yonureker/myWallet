@@ -14,8 +14,9 @@ router.get("/users/:user_id", (req, res) => {
     .catch(err => res.status(404).json({ noitemsfound: "No Items found" }));
 });
 
+// Add a new item
 router.post(
-  "/new",
+  "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateItemInput(req.body);
@@ -34,5 +35,20 @@ router.post(
     newItem.save().then(item => res.json(item));
   }
 );
+
+// Delete an item
+router.delete("/:item_id",
+  (req, res) => {
+    Item.findByIdAndDelete(req.params._id, (error, data) => {
+      if (error) {
+        console.log('could not delete item something is wrong');
+        return res.status(400).json({message: 'Item is not deleted'})
+      } else {
+        console.log('deleted');
+        return res.json({message: 'Item deleted'});
+      }
+    })});
+
+
 
 module.exports = router;
