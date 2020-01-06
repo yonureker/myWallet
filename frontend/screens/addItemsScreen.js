@@ -19,7 +19,7 @@ const AddItemsScreen = props => {
    const { userId, token } = props.navigation.state.params;
 
   const addItem = async (userId, name, amount, description) => {
-    try {const response = await fetch("http://localhost:5000/api/items/new/", {
+    try {const response = await fetch("http://localhost:5000/api/items/", {
       method: "POST",
       headers: {
         Accept: "application/json",
