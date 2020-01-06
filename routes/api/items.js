@@ -39,13 +39,13 @@ router.post(
 // Delete an item
 router.delete("/:item_id",
   (req, res) => {
-    Item.findByIdAndDelete(req.params._id, (error, data) => {
+    Item.findByIdAndDelete(req.body._id, (error, data) => {
       if (error) {
         console.log('could not delete item something is wrong');
         return res.status(400).json({message: 'Item is not deleted'})
       } else {
         console.log('deleted');
-        return res.json({message: 'Item deleted'});
+        return res.json({message: `item deleted`});
       }
     })});
 
