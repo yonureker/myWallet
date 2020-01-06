@@ -41,7 +41,7 @@ const ItemsScreen = props => {
 
   useEffect(() => {
     receiveItems(userId);
-  }, [items.length]);
+  }, [items]);
 
   return (
     <View style={styles.container}>
@@ -59,7 +59,8 @@ const ItemsScreen = props => {
                   id: item._id,
                   title: item.name,
                   amount: item.amount,
-                  description: item.description
+                  description: item.description,
+                  userId: userId
                 })
               }
             />
