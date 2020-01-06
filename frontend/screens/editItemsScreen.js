@@ -15,28 +15,58 @@ const EditItemsScreen = props => {
     props.navigation.state.params.description
   );
 
-  const itemId = props.navigation.state.params.id
+  const itemId = props.navigation.state.params.id;
+  const userId = props.navigation.state.params.userId;
 
-  console.log(itemId);
+  const removeItem = async (itemId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/items/${itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            _id: itemId
+          })
+        }
+      );
 
-  const removeItem = async itemId => {
-    try {const response = await fetch(`http://localhost:5000/api/items/${itemId}`, {
-      method: "DELETE",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        _id: itemId
-      })
-    })
+      const data = await response.json();
+      props.navigation.navigate("Items");
+    } catch {
+      console.log(error);
+    }
+  };
 
-    const data = await response.json();
+  const editItem = async (itemId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/items/${itemId}`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            _id: itemId,
+            user: userId,
+            name: name,
+            amount: amount,
+            description: description
+          })
+        }
+      );
 
-    console.log(data)
-  } catch {
-    console.log(error)
-  }};
+      const data = await response.json();
+      props.navigation.navigate("Items");
+    } catch {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -56,11 +86,11 @@ const EditItemsScreen = props => {
             placeholderTextColor="#D7DBDD"
             keyboardType="numeric"
             defaultValue={amount.toString()}
-            onChangeText={amount => setAmount(amount)}
+            onChangeText={amount => setAmount(amount.toString())}
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Description"
+            placeholder="Description [Optional]"
             placeholderTextColor="#D7DBDD"
             defaultValue={description}
             onChangeText={description => setDescription(description)}
@@ -68,7 +98,7 @@ const EditItemsScreen = props => {
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
-              addItem(userId, name, amount, description);
+              editItem(itemId);
             }}
           >
             <Text style={{ fontSize: 20, color: "#ffffff" }}>Edit Item</Text>
