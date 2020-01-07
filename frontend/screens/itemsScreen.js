@@ -7,7 +7,6 @@ import {
   FlatList
 } from "react-native";
 import ItemCard from "../components/itemCard";
-import AddItemsScreen from "./addItemsScreen";
 
 const ItemsScreen = props => {
   const [items, setItems] = useState([]);
