@@ -68,7 +68,6 @@ const LoginScreen = props => {
             placeholder="Email"
             placeholderTextColor="#D7DBDD"
             onChangeText={email => setEmail(email)}
-            defaultValue="yonureker@gmail.com"
           />
           <TextInput
             style={styles.textInput}
@@ -76,7 +75,6 @@ const LoginScreen = props => {
             placeholder="Password"
             placeholderTextColor="#D7DBDD"
             onChangeText={password => setPassword(password)}
-            defaultValue="'12345678'"
           />
           <TouchableOpacity
             style={styles.button}
