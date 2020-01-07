@@ -12,8 +12,8 @@ import {
 import AuthCss from "../css/authCss";
 
 const LoginScreen = props => {
-  const [email, setEmail] = useState("a@a.com");
-  const [password, setPassword] = useState("123456");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // for later AsyncStorage implementation
   // const saveCredentials = async (userId, token) => {
