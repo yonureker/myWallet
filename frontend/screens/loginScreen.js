@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground
 } from "react-native";
 
 import AuthCss from "../css/authCss";
@@ -60,6 +61,7 @@ const LoginScreen = props => {
 
   return (
     <View style={styles.container}>
+      <ImageBackground style={{width: 300, height: 90, marginBottom: 50}} source={require('../assets/auth_image.png')}/>
       <View style={styles.loginModule}>
         <View>
           <TextInput
