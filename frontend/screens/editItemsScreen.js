@@ -35,7 +35,7 @@ const EditItemsScreen = props => {
       );
 
       const data = await response.json();
-      props.navigation.navigate("Items");
+      props.navigation.navigate("Items", {status: 'deleted'});
     } catch {
       console.log(error);
     }
@@ -62,7 +62,7 @@ const EditItemsScreen = props => {
       );
 
       const data = await response.json();
-      props.navigation.navigate("Items");
+      props.navigation.navigate("Items", {status: 'updated'});
     } catch {
       console.log(error);
     }
@@ -74,7 +74,7 @@ const EditItemsScreen = props => {
         <View>
           <TextInput
             style={styles.textInput}
-            autoCapitalize="none"
+            autoCapitalize="sentences"
             placeholder="Name"
             placeholderTextColor="#D7DBDD"
             defaultValue={name}
