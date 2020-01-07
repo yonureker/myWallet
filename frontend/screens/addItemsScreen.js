@@ -37,7 +37,7 @@ const AddItemsScreen = props => {
     const data = await response.json();
 
     if (data._id) {
-      props.navigation.navigate('Items', {userId: userId, name: name});
+      props.navigation.navigate('Items', {userId: userId, name: name, status: 'deleted'});
     } else {
       const errors = Object.values(data);
 
@@ -53,7 +53,7 @@ const AddItemsScreen = props => {
         <View>
           <TextInput
             style={styles.textInput}
-            autoCapitalize="none"
+            autoCapitalize="sentences"
             placeholder="Name"
             placeholderTextColor="#D7DBDD"
             onChangeText={name => setName(name)}
