@@ -23,5 +23,9 @@ npm start
 # Server runs on http://localhost:5000 and client on http://localhost:3000
 ```
 
+You also need to create an .env file for MongoDB and Passport.js secret keys:
 
-
+```
+ATLAS_URI=<MONGODB URI HERE>
+secretOrKeys=<SECRET KEY HERE>
+```
