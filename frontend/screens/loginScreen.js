@@ -15,6 +15,17 @@ const LoginScreen = props => {
   const [email, setEmail] = useState("a@a.com");
   const [password, setPassword] = useState("123456");
 
+  // for later AsyncStorage implementation
+  // const saveCredentials = async (userId, token) => {
+  //   try {
+  //     await AsyncStorage.setItem('userId', userId);
+  //     await AsyncStorage.setItem('token', token);
+  //   } catch (error) {
+  //     // Error retrieving data
+  //     console.log(error.message);
+  //   }
+  // };
+
   const loginUser = async (email, password) => {
     try {const response = await fetch("http://localhost:5000/api/users/login/", {
       method: "POST",
@@ -31,6 +42,10 @@ const LoginScreen = props => {
     const data = await response.json()
 
     if (data.id) {
+      AsyncStorage.setItem('userId', data.id);
+      AsyncStorage.setItem('token', data.token);
+
+      
       // no need for AsyncStorage now
       props.navigation.navigate('Items', {userId: data.id, token: data.token} );
     } else {
