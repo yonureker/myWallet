@@ -24,7 +24,7 @@ const AppNavigator = createStackNavigator(
     EditItems: EditItemsScreen
   },
   {
-    initialRouteName: "Login"
+    initialRouteName: "Login",
   }
 );
 
