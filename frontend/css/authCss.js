@@ -42,5 +42,5 @@ export default authCss = {
     alignItems: "center",
     marginTop: 15,
     flexDirection: "row"
-  }
+  },
 }
