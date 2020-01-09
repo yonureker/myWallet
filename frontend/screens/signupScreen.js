@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, ImageBackground } from "react-native";
 
 import AuthCss from '../css/authCss'
 
@@ -35,6 +35,7 @@ const SignupScreen = props => {
 
   return (
     <View style={styles.container}>
+      <ImageBackground style={{width: 300, height: 90, marginBottom: 50}} source={require('../assets/auth_image.png')}/>
       <View style={styles.loginModule}>
         <View>
           <TextInput
