@@ -12,7 +12,7 @@ const ItemCard = props => {
           <Text style={{ fontSize: 20 }}>{title}</Text>
         </View>
         <View style={styles.cardRight}>
-          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>${amount}</Text>
+          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>${amount.toFixed(2)}</Text>
         </View>
       </View>
     </TouchableHighlight>
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#d3dade"
   },
   cardLeft: {
-    width: "70%",
+    width: "60%",
     padding: 10,
     paddingLeft: 20
   },
   cardRight: {
-    width: "30%",
+    width: "40%",
     padding: 10,
     paddingRight: 20
   }
