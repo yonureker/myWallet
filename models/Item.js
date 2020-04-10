@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: "users"
   },
   name: {
     type: String,
@@ -12,10 +12,10 @@ const ItemSchema = new Schema({
   },
   amount: {
     type: Number,
-    required: true,
+    required: true
   },
   description: {
-    type: String,
+    type: String
   },
   date: {
     type: Date,
@@ -23,4 +23,4 @@ const ItemSchema = new Schema({
   }
 });
 
-module.exports = Item = mongoose.model('items', ItemSchema);
+module.exports = Item = mongoose.model("items", ItemSchema);

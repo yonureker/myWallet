@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   FlatList
 } from "react-native";
+import { Feather } from "@expo/vector-icons";
+
 import ItemCard from "../components/itemCard";
 
 const ItemsScreen = props => {
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#0e75b5",
     minHeight: 50,
     minWidth: "80%",
+    borderRadius: 10,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -117,9 +120,23 @@ const styles = StyleSheet.create({
   }
 });
 
-ItemsScreen.navigationOptions = {
-  title: "My Items",
-  headerLeft: null
-};
+ItemsScreen.navigationOptions = ({navigation}) => ({
+  title: "Expenses",
+  headerLeft: null,
+  headerRight: () => (
+    <Feather
+      name={"plus"
+      }
+      size={30}
+      color="black"
+      style={{ marginRight: 15 }}
+      onPress={() =>
+        navigation.navigate("AddItems", {
+          userId: navigation.state.params.userId,
+          token: navigation.state.params.token
+        })}
+    />
+  )
+});
 
 export default ItemsScreen;
