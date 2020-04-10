@@ -9,7 +9,7 @@ const ItemCard = props => {
     <TouchableHighlight onPress={() => props.onPress()}>
       <View style={styles.container}>
         <View style={styles.cardLeft}>
-          <Text style={{ fontSize: 15 }}>{title}</Text>
+          <Text style={{ fontSize: 20 }}>{title}</Text>
         </View>
         <View style={styles.cardRight}>
           <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>${amount}</Text>
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "#b8bcc2",
+    borderRadius: 10,
     height: 50,
     marginTop: 10,
     maxWidth: 350,
@@ -34,11 +35,13 @@ const styles = StyleSheet.create({
   },
   cardLeft: {
     width: "70%",
-    padding: 10
+    padding: 10,
+    paddingLeft: 20
   },
   cardRight: {
     width: "30%",
-    padding: 10
+    padding: 10,
+    paddingRight: 20
   }
 });
 
