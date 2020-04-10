@@ -1,7 +1,15 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Alert,
+  ImageBackground
+} from "react-native";
 
-import AuthCss from '../css/authCss'
+import AuthCss from "../css/authCss";
 
 const SignupScreen = props => {
   const [email, setEmail] = useState("");
@@ -22,20 +30,23 @@ const SignupScreen = props => {
       })
     });
 
-    const data = await response.json()
+    const data = await response.json();
 
     if (data.id) {
-      props.navigation.navigate('Items', {userId: data.id} );
+      props.navigation.navigate("Items", { userId: data.id });
     } else {
       const errors = Object.values(data);
 
-      errors.map(error => Alert.alert(error))
+      errors.map(error => Alert.alert(error));
     }
   };
 
   return (
     <View style={styles.container}>
-      <ImageBackground style={{width: 300, height: 90, marginBottom: 50}} source={require('../assets/auth_image.png')}/>
+      <ImageBackground
+        style={{ width: 300, height: 90, marginBottom: 50 }}
+        source={require("../assets/auth_image.png")}
+      />
       <View style={styles.loginModule}>
         <View>
           <TextInput
@@ -68,7 +79,7 @@ const SignupScreen = props => {
             <Text style={{ fontSize: 20, color: "#ffffff" }}>Signup</Text>
           </TouchableOpacity>
         </View>
-          <View style={styles.signupContainer}>
+        <View style={styles.signupContainer}>
           <Text>
             Already have an account?{" "}
             <Text
@@ -78,11 +89,11 @@ const SignupScreen = props => {
               Log In.
             </Text>
           </Text>
-          </View>
         </View>
       </View>
+    </View>
   );
-}
+};
 
 SignupScreen.navigationOptions = {
   title: "Sign Up"

@@ -7,12 +7,10 @@ import LoginScreen from "./screens/loginScreen";
 import SignupScreen from "./screens/signupScreen";
 import ItemsScreen from "./screens/itemsScreen";
 import AddItemsScreen from "./screens/addItemsScreen";
-import EditItemsScreen from './screens/editItemsScreen'
+import EditItemsScreen from "./screens/editItemsScreen";
 
 export default function App() {
-  return (
-      <AppContainer />
-  );
+  return <AppContainer />;
 }
 
 const AppNavigator = createStackNavigator(
@@ -24,7 +22,7 @@ const AppNavigator = createStackNavigator(
     EditItems: EditItemsScreen
   },
   {
-    initialRouteName: "Login",
+    initialRouteName: "Login"
   }
 );
 

@@ -1,7 +1,7 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const mongoose = require("mongoose");
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 
 // To be able to use .env file
 dotenv.config();
@@ -15,7 +15,7 @@ const users = require("./routes/api/users");
 const items = require("./routes/api/items");
 
 // Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 const app = express();
 
@@ -33,8 +33,3 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch(err => console.log(err));
-
-
-
-
-

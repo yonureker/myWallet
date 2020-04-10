@@ -8,44 +8,55 @@ import {
   Alert
 } from "react-native";
 
-import AuthCss from '../css/authCss';
+import AuthCss from "../css/authCss";
 
 const AddItemsScreen = props => {
-  const [name, setName] = useState("")
-  const [amount, setAmount] = useState(0)
-  const [description, setDescription] = useState("")
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [description, setDescription] = useState("");
 
-   // logged in User
-   const { userId, token } = props.navigation.state.params;
+  // logged in User
+  const { userId, token } = props.navigation.state.params;
 
   const addItem = async (userId, name, amount, description) => {
-    try {const response = await fetch("http://localhost:5000/api/items/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: token
-      },
-      body: JSON.stringify({
-        user: userId,
-        name: name,
-        amount: amount,
-        description: description
-      })
-    })
+    try {
+      const response = await fetch("http://localhost:5000/api/items/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: token
+        },
+        body: JSON.stringify({
+          user: userId,
+          name: name,
+          amount: amount,
+          description: description
+        })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data._id) {
-      props.navigation.navigate('Items', {userId: userId, name: name, status: 'deleted'});
-    } else {
-      const errors = Object.values(data);
+      if (data._id) {
+        props.navigation.navigate("Items", {
+          userId: userId,
+          name: name,
+          status: "deleted"
+        });
+      }
+      // } else {
+      //   const errors = Object.values(data);
 
-      errors.map(error => Alert.alert(error))
+      //   errors.map(error => Alert.alert(error))
+      // }
+    } catch {
+      // console.log(error)
+      // const errors = Object.values(data);
+      return Alert.alert(error);
+
+      // error.map(error => Alert.alert(error))
     }
-  } catch {
-    console.log(error)
-  }}
+  };
 
   return (
     <View style={styles.container}>
@@ -83,8 +94,7 @@ const AddItemsScreen = props => {
       </View>
     </View>
   );
-
-}
+};
 
 AddItemsScreen.navigationOptions = {
   title: "Add Item"

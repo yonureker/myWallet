@@ -35,7 +35,7 @@ const ItemsScreen = props => {
 
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const cost = costArray.reduce(reducer, 0);
-    return cost;
+    return cost.toFixed(2);
   };
 
   useEffect(() => {

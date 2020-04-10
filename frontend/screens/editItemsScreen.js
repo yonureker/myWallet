@@ -18,7 +18,7 @@ const EditItemsScreen = props => {
   const itemId = props.navigation.state.params.id;
   const userId = props.navigation.state.params.userId;
 
-  const removeItem = async (itemId) => {
+  const removeItem = async itemId => {
     try {
       const response = await fetch(
         `http://localhost:5000/api/items/${itemId}`,
@@ -35,13 +35,13 @@ const EditItemsScreen = props => {
       );
 
       const data = await response.json();
-      props.navigation.navigate("Items", {status: 'deleted'});
+      props.navigation.navigate("Items", { status: "deleted" });
     } catch {
       console.log(error);
     }
   };
 
-  const editItem = async (itemId) => {
+  const editItem = async itemId => {
     try {
       const response = await fetch(
         `http://localhost:5000/api/items/${itemId}`,
@@ -62,7 +62,7 @@ const EditItemsScreen = props => {
       );
 
       const data = await response.json();
-      props.navigation.navigate("Items", {status: 'updated'});
+      props.navigation.navigate("Items", { status: "updated" });
     } catch {
       console.log(error);
     }
