@@ -1,18 +1,18 @@
-const Validator = require('validator');
-const validText = require('./valid-text');
+const Validator = require("validator");
+const validText = require("./valid-text");
 
 module.exports = function validateTweetInput(data) {
   let errors = {};
 
-  data.name = validText(data.name) ? data.name : '';
-  data.amount = validText(data.amount) ? data.amount : '';
+  data.name = validText(data.name) ? data.name : "";
+  data.amount = validText(data.amount) ? data.amount : "";
 
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required';
+    errors.name = "Name field is required";
   }
 
   if (Validator.isEmpty(data.amount)) {
-    errors.amount = 'Amount field is required';
+    errors.amount = "Amount field is required";
   }
 
   return {
