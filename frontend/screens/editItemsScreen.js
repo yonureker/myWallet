@@ -101,7 +101,7 @@ const EditItemsScreen = props => {
               editItem(itemId);
             }}
           >
-            <Text style={{ fontSize: 20, color: "#ffffff" }}>Edit Item</Text>
+            <Text style={{ fontSize: 20, color: "#ffffff" }}>Edit Expense</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{ ...styles.button, backgroundColor: "#FF0000" }}
@@ -109,7 +109,7 @@ const EditItemsScreen = props => {
               removeItem(itemId);
             }}
           >
-            <Text style={{ fontSize: 20, color: "#ffffff" }}>Delete Item</Text>
+            <Text style={{ fontSize: 20, color: "#ffffff" }}>Delete Expense</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -118,7 +118,7 @@ const EditItemsScreen = props => {
 };
 
 EditItemsScreen.navigationOptions = {
-  title: "Edit Item"
+  title: "Edit Expense"
 };
 
 const styles = StyleSheet.create(AuthCss);
