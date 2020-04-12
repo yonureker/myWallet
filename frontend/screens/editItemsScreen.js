@@ -109,7 +109,9 @@ const EditItemsScreen = props => {
               removeItem(itemId);
             }}
           >
-            <Text style={{ fontSize: 20, color: "#ffffff" }}>Delete Expense</Text>
+            <Text style={{ fontSize: 20, color: "#ffffff" }}>
+              Delete Expense
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

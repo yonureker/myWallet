@@ -12,7 +12,9 @@ const ItemCard = props => {
           <Text style={{ fontSize: 20 }}>{title}</Text>
         </View>
         <View style={styles.cardRight}>
-          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>${amount.toFixed(2)}</Text>
+          <Text style={{ fontSize: 20, alignSelf: "flex-end" }}>
+            ${amount.toFixed(2)}
+          </Text>
         </View>
       </View>
     </TouchableHighlight>

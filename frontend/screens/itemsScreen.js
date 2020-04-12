@@ -120,13 +120,12 @@ const styles = StyleSheet.create({
   }
 });
 
-ItemsScreen.navigationOptions = ({navigation}) => ({
+ItemsScreen.navigationOptions = ({ navigation }) => ({
   title: "Expenses",
   headerLeft: null,
   headerRight: () => (
     <Feather
-      name={"plus"
-      }
+      name={"plus"}
       size={30}
       color="black"
       style={{ marginRight: 15 }}
@@ -134,7 +133,8 @@ ItemsScreen.navigationOptions = ({navigation}) => ({
         navigation.navigate("AddItems", {
           userId: navigation.state.params.userId,
           token: navigation.state.params.token
-        })}
+        })
+      }
     />
   )
 });
