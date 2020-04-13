@@ -1,6 +1,6 @@
 # myWallet
 
-myWallet is a subscription management app built with Node | Express.js | MongoDB | React Native | Expo
+myWallet is an expense tracker app built with Node | Express.js | MongoDB | React Native | Expo
 
 ## Quick Start
 
