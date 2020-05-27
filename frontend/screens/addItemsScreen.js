@@ -65,21 +65,21 @@ const AddItemsScreen = props => {
           <TextInput
             style={styles.textInput}
             autoCapitalize="sentences"
-            placeholder="Name"
-            placeholderTextColor="#D7DBDD"
+            placeholder="Expense Name"
+            placeholderTextColor="#A7AAAD"
             onChangeText={name => setName(name)}
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Amount"
-            placeholderTextColor="#D7DBDD"
+            placeholder="Cost in $USD"
+            placeholderTextColor="#A7AAAD"
             keyboardType="numeric"
             onChangeText={amount => setAmount(amount)}
           />
           <TextInput
             style={styles.textInput}
             placeholder="Description"
-            placeholderTextColor="#D7DBDD"
+            placeholderTextColor="#A7AAAD"
             onChangeText={description => setDescription(description)}
           />
           <TouchableOpacity
