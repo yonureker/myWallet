@@ -20,9 +20,12 @@ export default authCss = {
     minWidth: "80%",
     minHeight: 50,
     borderWidth: 1.5,
-    borderColor: "#D7DBDD",
+    borderColor: "#EAEEF0",
     marginTop: 10,
-    padding: 10
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: "#EAEEF0",
+    fontSize: 18
   },
   socialLogin: {
     marginTop: 10
